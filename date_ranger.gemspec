@@ -14,4 +14,8 @@ Gem::Specification.new do |gem|
   gem.name          = "date_ranger"
   gem.require_paths = ["lib"]
   gem.version       = DateRanger::VERSION
+
+  gem.add_development_dependency "rspec", '~> 2.12.0'
+  gem.add_runtime_dependency "active_support"
 end
+
