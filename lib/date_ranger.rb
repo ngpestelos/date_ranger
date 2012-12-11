@@ -35,5 +35,4 @@ module DateRanger
 end
 
 require "active_support/all"
-require "date_ranger/version"
 require 'date_ranger/bootstrapper'
