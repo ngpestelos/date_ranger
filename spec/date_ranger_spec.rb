@@ -5,10 +5,25 @@ describe DateRanger do
   class Something
   end
 
+  class Another
+  end
+
   describe '.has_date_range' do
     it 'should default timestep to :daily' do
       Something.has_date_range
       Something.date_ranger_options[:timestep].should == :daily
+    end
+
+    context 'when applied to a class' do
+      it "should not overwrite another class' settings" do
+        Something.has_date_range :timestep => :daily, :class => true
+        Another.has_date_range :timestep => :monthly, :class => true
+        Something.date_ranger_options[:timestep].should == :daily
+        Another.date_ranger_options[:timestep].should == :monthly
+
+        Something.start_date = '2012-01-01'
+        Something.start_date.should == '2012-01-01'.to_date
+      end
     end
   end
 
@@ -20,9 +35,16 @@ describe DateRanger do
       something.start_date.should == '2012-01-01'.to_date
     end
 
+    it 'should return date given a time' do
+      Something.has_date_range
+      something = Something.new
+      something.start_date = 5.days.ago
+      something.start_date.should == 5.days.ago.to_date
+    end
+
     context 'when not overriden' do
       it 'should return the given default start date' do
-        Something.has_date_range :default_start_date => lambda { 2.days.ago.to_date }
+        Something.has_date_range :default_start_date => lambda { 2.days.ago }
         something  = Something.new
         something.start_date.should == 2.days.ago.to_date
       end
@@ -53,6 +75,13 @@ describe DateRanger do
       something = Something.new
       something.end_date = '2012-01-01'
       something.end_date.should == '2012-01-01'.to_date
+    end
+
+    it 'should return date given a time' do
+      Something.has_date_range
+      something = Something.new
+      something.end_date = 5.days.ago
+      something.end_date.should == 5.days.ago.to_date
     end
 
     context 'when not overriden' do
