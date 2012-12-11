@@ -4,7 +4,11 @@ module DateRanger::Bootstrapper
     cattr_accessor :date_ranger_options
     self.date_ranger_options = options
     self.date_ranger_options[:timestep] ||= :daily
-    self.send :include, DateRanger
+    if self.date_ranger_options[:class]
+      extend DateRanger
+    else
+      self.send :include, DateRanger
+    end
   end
 
 end
