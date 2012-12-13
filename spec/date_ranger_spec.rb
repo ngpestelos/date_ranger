@@ -54,7 +54,7 @@ describe DateRanger do
       it 'should start at the first day of the month' do
         Something.has_date_range(:timestep => :monthly)
         something = Something.new
-        something.start_date = '2012-01-05'.to_date
+        something.start_date = '2012-01-05'
         something.start_date.should == '2012-01-01'.to_date
       end
     end
@@ -63,7 +63,7 @@ describe DateRanger do
       it 'should end at the given date' do
         Something.has_date_range(:timestep => :daily)
         something = Something.new
-        something.start_date = '2012-01-15'.to_date
+        something.start_date = '2012-01-15'
         something.start_date.should == '2012-01-15'.to_date
       end
     end
@@ -96,7 +96,7 @@ describe DateRanger do
       it 'should end at the last day of the month' do
         Something.has_date_range(:timestep => :monthly)
         something = Something.new
-        something.end_date = '2012-01-15'.to_date
+        something.end_date = '2012-01-15'
         something.end_date.should == '2012-01-31'.to_date
       end
     end
@@ -105,7 +105,7 @@ describe DateRanger do
       it 'should end at the given date' do
         Something.has_date_range(:timestep => :daily)
         something = Something.new
-        something.end_date = '2012-01-15'.to_date
+        something.end_date = '2012-01-15'
         something.end_date.should == '2012-01-15'.to_date
       end
     end
