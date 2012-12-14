@@ -73,6 +73,14 @@ describe DateRanger do
     end
   end
 
+  context 'when default dates are not overridden' do
+    it 'should both be today' do
+      something = Something.new
+      something.start_date.should == Date.today
+      something.end_date.should == Date.today
+    end
+  end
+
   describe "#end_date" do
     it 'should return date given a string' do
       Something.has_date_range
