@@ -2,10 +2,14 @@ require 'spec_helper'
 
 describe DateRanger do
 
-  class Something
+  class Foo
+    has_date_range
   end
 
-  class Another
+  class Something < Foo
+  end
+
+  class Another < Foo
   end
 
   describe '.has_date_range' do
